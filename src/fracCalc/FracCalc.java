@@ -42,19 +42,19 @@ public class FracCalc {
         if(input.contains("+")) {
     	    //addition
     	    part1 = input.substring(0, (input.indexOf("+") - 1));
-    	    part2 = input.substring(input.indexOf("+") + 1);
+    	    part2 = input.substring(input.indexOf("+") + 2);
     	    function = 0;
         } else {
  	       if(input.contains("-")) {
  	    	   //subtraction
- 	    	   part1 = input.substring(0, (input.indexOf("-") - 1));
- 	    	   part2 = input.substring(input.indexOf("-") + 1);
+ 	    	   part1 = input.substring(0, (input.lastIndexOf("-") - 1));
+ 	    	   part2 = input.substring(input.lastIndexOf("-") + 2);
  	    	   function = 1;
  	       } else {
  		       if(input.contains("*")) {
  		    	   //multiplication
- 		    	   part1 = input.substring(0, (input.indexOf("-") - 1));
- 		    	   part2 = input.substring(input.indexOf("-") + 1);
+ 		    	   part1 = input.substring(0, (input.indexOf("*") - 1));
+ 		    	   part2 = input.substring(input.indexOf("*") + 2);
  		    	   function = 2;
  		       } else {
  			       if(input.contains("/")) {
@@ -64,7 +64,7 @@ public class FracCalc {
  	       }
         }
         
-        if(part1.contains("_")) {
+        /*if(part1.contains("_")) {
         	num1 = part1.substring(0, part1.indexOf("_"));
         	top1 = part1.substring(part1.indexOf("_") + 1, part1.indexOf("/"));
         	bottom1 = part1.substring(part1.indexOf("/") + 1);
@@ -94,11 +94,12 @@ public class FracCalc {
         		bottom2 = "";
         	}
         }
-        if(num2.equals("")) {
+        /*if(num2.equals("")) {
         	return top2 + "/" + bottom2;
         } else {
         	return num2 + "_" + top2 + "/" + bottom2;
-        }
+        }*/
+        return part2;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
