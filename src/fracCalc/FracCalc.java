@@ -1,11 +1,15 @@
 package fracCalc;
+import java.util.Scanner;
 
 public class FracCalc {
 
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
-
+    	Scanner keybrd = new Scanner(System.in);
+    	System.out.println("Fractions to calculate: ");
+    	String userInput = keybrd.nextLine();
+    	System.out.println(produceAnswer(userInput));
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -19,8 +23,82 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
+    	String part1 = "";
+    	String part2 = "";
+    	int function; //0 = +; 1 = -; 2 = *; 3 = /;
+        String num1 = "";
+        int num1i;
+        String top1 = "";
+        int top1i;
+        String bottom1 = "";
+        int bottom1i;
+        String num2 = "";
+        int num2i;
+        String top2 = "";
+        int top2i;
+        String bottom2 = "";
+        int bottom2i;
         
-        return "";
+        if(input.contains("+")) {
+    	    //addition
+    	    part1 = input.substring(0, (input.indexOf("+") - 1));
+    	    part2 = input.substring(input.indexOf("+") + 1);
+    	    function = 0;
+        } else {
+ 	       if(input.contains("-")) {
+ 	    	   //subtraction
+ 	    	   part1 = input.substring(0, (input.indexOf("-") - 1));
+ 	    	   part2 = input.substring(input.indexOf("-") + 1);
+ 	    	   function = 1;
+ 	       } else {
+ 		       if(input.contains("*")) {
+ 		    	   //multiplication
+ 		    	   part1 = input.substring(0, (input.indexOf("-") - 1));
+ 		    	   part2 = input.substring(input.indexOf("-") + 1);
+ 		    	   function = 2;
+ 		       } else {
+ 			       if(input.contains("/")) {
+ 			    	   //division
+ 			       }
+ 		       }
+ 	       }
+        }
+        
+        if(part1.contains("_")) {
+        	num1 = part1.substring(0, part1.indexOf("_"));
+        	top1 = part1.substring(part1.indexOf("_") + 1, part1.indexOf("/"));
+        	bottom1 = part1.substring(part1.indexOf("/") + 1);
+        } else {
+        	if(part1.contains("/")) {
+	        	num1 = "";
+	        	top1 = part1.substring(0, part1.indexOf("/"));
+	        	bottom1 = part1.substring(part1.indexOf("/") +1);
+        	} else {
+        		num1 = part1;
+        		top1 = "";
+        		bottom1 = "";
+        	}
+        }
+        if(part2.contains("_")) {
+        	num2 = part2.substring(0, part2.indexOf("_"));
+        	top2 = part2.substring(part2.indexOf("_") + 1, part2.indexOf("/"));
+        	bottom2 = part2.substring(part2.indexOf("/") + 1);
+        } else {
+        	if(part2.contains("/")) {
+	        	num2 = "";
+	        	top2 = part2.substring(0, part2.indexOf("/"));
+	        	bottom2 = part2.substring(part2.indexOf("/") +1);
+        	} else {
+        		num2 = part2;
+        		top2 = "";
+        		bottom2 = "";
+        	}
+        }
+        if(num2.equals("")) {
+        	return top2 + "/" + bottom2;
+        } else {
+        	return num2 + "_" + top2 + "/" + bottom2;
+        }
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
