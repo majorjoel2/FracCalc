@@ -26,7 +26,7 @@ public class FracCalc {
     	String part1 = "";
     	String part2 = "";
     	int function = 4; //0 = +; 1 = -; 2 = *; 3 = /;
-    	int returntype = 1;
+    	int returntype = 2;
         String num1 = "";
         int num1i;
         String top1 = "";
@@ -90,7 +90,7 @@ public class FracCalc {
         	} else {
         		num1 = part1;
         		top1 = "0";
-        		bottom1 = "0";
+        		bottom1 = "1";
         	}
         }
         if(part2.contains("_")) {
@@ -105,7 +105,7 @@ public class FracCalc {
         	} else {
         		num2 = part2;
         		top2 = "0";
-        		bottom2 = "0";
+        		bottom2 = "1";
         	}
         }
         
