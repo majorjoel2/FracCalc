@@ -138,15 +138,74 @@ public class FracCalc {
         bottomOut = 0;
         if(function == 0) {
         	//addition
-        	if(num1i != 0 && num2i != 0) {
+        	if((top1i != 0 && top2i != 0) || (top1i == 0 && top2i == 0)) {
         		numOut = num1i + num2i;
+        	} else {
+        		numOut = 0;
+        		if(is1Neg == false) {
+        			top1i = num1i*bottom1i - top1i;
+        		} else {
+        			top1i += num1i*bottom1i;
+        		}
+        		if(is1Neg == false) {
+        			top2i = num2i*bottom2i - top2i;
+        		} else {
+        			top2i += num2i*bottom2i;
+        		}
         	}
-        	if(bottom1i == bottom2i && is1Neg == false && is2Neg == false) {
+        	boolean omit1 = false;
+        	if(bottom1i == 1 && bottom2i != 1) {
+        		top1i = top1i*bottom2i;
+        		bottom1i = bottom2i;
+        		omit1 = true;
+        	} else {
+	        	if(bottom1i != 1 && bottom2i == 1) {
+	        		top2i = top2i*bottom1i;
+	        		bottom2i = bottom1i;
+	        		omit1 = true;
+	        	}
+        	}
+        	if(bottom1i == bottom2i) {
+        		if(omit1 == false && is1Neg == true && (top1.contains("-") == false)) {
+        			top1i -= top1i*2;
+        		}
+        		if(omit1 == false && is2Neg == true && (top2.contains("-") == false)) {
+        			top2i -= top2i*2;
+        		}
         		topOut = top1i + top2i;
         		bottomOut = bottom1i;
         	}
+        	if(bottom1i != bottom2i) {
+        		top1i = top1i*bottom2i;
+        		top2i = top2i*bottom1i;
+        		bottomOut = bottom1i*bottom2i;
+        		if(omit1 == false && is1Neg == true && (top1.contains("-") == false)) {
+        			top1i -= top1i*2;
+        		}
+        		if(omit1 == false && is2Neg == true && (top2.contains("-") == false)) {
+        			top2i -= top2i*2;
+        		}
+        		topOut = top1i + top2i;
+        	}
+        	
+        	while(topOut < -bottomOut) {
+        		topOut += bottomOut;
+        		numOut--;
+        	}
+        	if(topOut < 0) {
+        		topOut -= topOut*2;
+        	}
+        	while(topOut > bottomOut) {
+        		topOut -= bottomOut;
+        		numOut++;
+        	}
         }
         
+        if(returntype == 3) {
+        	if(numOut == 0) {
+        		return topOut + "/" + bottomOut;
+        	}
+        }
         System.out.println(numOut + "_" + topOut + "/" + bottomOut);
         
         //end of function reached fail safe
