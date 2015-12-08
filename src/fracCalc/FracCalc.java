@@ -395,7 +395,5 @@ public class FracCalc {
         //end of function reached fail safe
         return "FAILED";
     }
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
-    
+    // TODO: Fill in the space below with any helper methods that you think you will need   
 }
